@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import './App.scss'
 import { Route } from 'react-router-dom'
 
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 import AuthenticatedRoute from './auth/components/AuthenticatedRoute'
 import Header from './header/Header'
 import SignUp from './auth/components/SignUp'
@@ -9,6 +11,10 @@ import SignIn from './auth/components/SignIn'
 import SignOut from './auth/components/SignOut'
 import ChangePassword from './auth/components/ChangePassword'
 import AlertDismissible from './auth/components/AlertDismissible'
+import PatientIndex from './patients/PatientIndex'
+import PatientCreate from './patients/PatientCreate'
+import PatientShow from './patients/PatientShow'
+import PatientEdit from './patients/PatientEdit'
 
 class App extends Component {
   constructor () {
@@ -50,9 +56,28 @@ class App extends Component {
           <AuthenticatedRoute user={user} path='/change-password' render={() => (
             <ChangePassword alert={this.alert} user={user} />
           )} />
-  
+          {/* this is Index component */}
+          <AuthenticatedRoute user={user} path='/patients' exact render={() => (
+            <PatientIndex user={user}/>
+          )} />
+          {/* this create component */}
+          <AuthenticatedRoute user={user} path='/patients/create' exact render={() => (
+            <PatientCreate user={user}/>
+          )} />
+           {/* this Show component */}
+           <AuthenticatedRoute user={user} path='/patients/:id' exact render={(props) => (
+            <PatientShow user={user} />
+          )} />
+          {/* this Edit component */}
+          <AuthenticatedRoute user={user} path='/patients/:id/edit' exact  render={() => (
+            <PatientEdit user={user} />
+          )} />
 
         </main>
+            
+        <div className="footer">
+
+        </div>
       </React.Fragment>
     )
   }

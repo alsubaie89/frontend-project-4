@@ -1,6 +1,13 @@
 import React, { Component } from 'react'
 import { withRouter } from 'react-router-dom'
 
+import { Form } from 'react-bootstrap';
+import { Button } from 'react-bootstrap';
+import { FormGroup } from 'react-bootstrap';
+import { FormLabel} from 'react-bootstrap';
+import { FormControl } from 'react-bootstrap';
+import { Container }from 'react-bootstrap';
+
 import { changePassword } from '../api'
 import messages from '../messages'
 
@@ -37,11 +44,15 @@ class ChangePassword extends Component {
     const { oldPassword, newPassword } = this.state
 
     return (
-      <form className='auth-form' onSubmit={this.onChangePassword}>
+      <Container>
+        <div className="container "> 
+               <div className="form">
+
+      <Form className='auth-form' onSubmit={this.onChangePassword}>
         <h3>Change Password</h3>
 
-        <label htmlFor="oldpw">Old Password</label>
-        <input
+        <FormLabel htmlFor="oldpw">Old Password</FormLabel>
+        <FormControl
           required
           name="oldPassword"
           value={oldPassword}
@@ -49,8 +60,8 @@ class ChangePassword extends Component {
           placeholder="Old Password"
           onChange={this.handleChange}
         />
-        <label htmlFor="newPassword">New Password</label>
-        <input
+        <FormLabel htmlFor="newPassword">New Password</FormLabel>
+        <FormControl
           required
           name="newPassword"
           value={newPassword}
@@ -58,8 +69,12 @@ class ChangePassword extends Component {
           placeholder="New Password"
           onChange={this.handleChange}
         />
-        <button type="submit">Change Password</button>
-      </form>
+        <Button type="submit">Change Password</Button>
+      </Form>
+
+      </div>
+      </div>
+      </Container>
     )
   }
 }

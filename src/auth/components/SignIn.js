@@ -4,6 +4,15 @@ import { withRouter } from 'react-router-dom'
 import { signIn } from '../api'
 import messages from '../messages'
 
+import { Form } from 'react-bootstrap';
+import { Button } from 'react-bootstrap';
+import { FormGroup } from 'react-bootstrap';
+import { FormLabel} from 'react-bootstrap';
+import { FormControl } from 'react-bootstrap';
+import { Container }from 'react-bootstrap';
+
+
+
 class SignIn extends Component {
   constructor () {
     super()
@@ -38,10 +47,15 @@ class SignIn extends Component {
     const { email, password } = this.state
 
     return (
-      <form className='auth-form' onSubmit={this.onSignIn}>
+
+      <Container>
+            <div className="container "> 
+               <div className="form">
+      <Form className='auth-form' onSubmit={this.onSignIn}>
+      <FormGroup controlId="formBasicEmail">
         <h3>Sign In</h3>
-        <label htmlFor="email">Email</label>
-        <input
+        <FormLabel htmlFor="email">Email</FormLabel>
+        <FormControl
           required
           type="email"
           name="email"
@@ -49,8 +63,11 @@ class SignIn extends Component {
           placeholder="Email"
           onChange={this.handleChange}
         />
-        <label htmlFor="password">Password</label>
-        <input
+        </FormGroup>
+
+        <FormGroup controlId="formBasicEmail">
+        <FormLabel htmlFor="password">Password</FormLabel>
+        <FormControl
           required
           name="password"
           value={password}
@@ -58,8 +75,12 @@ class SignIn extends Component {
           placeholder="Password"
           onChange={this.handleChange}
         />
-        <button type="submit">Sign In</button>
-      </form>
+        </FormGroup>
+        <Button type="submit">Sign In</Button>
+      </Form>
+      </div>
+      </div>
+      </Container>
     )
   }
 }
